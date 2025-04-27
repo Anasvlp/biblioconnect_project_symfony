@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des livres{% endblock %}
+
+{% block body %}
+<div style="max-width: 1200px; margin: 2em auto;">
+    <h1 style="text-align: center;">Livres disponibles</h1>
+
+    {% if books is empty %}
+        <p style="text-align: center;">Aucun livre trouvé.</p>
+    {% else %}
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Catégorie</th>
+                    <th>Langage</th>
+                    <th>Stock</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.titre }}</td>
+                    <td>{{ book.auteur }}</td>
+                    <td>{{ book.categorie }}</td>
+                    <td>{{ book.langage }}</td>
+                    <td>{{ book.stock }}</td>
+                    <td>
+                        <a href="{{ path('app_book_show', {'id': book.id}) }}">Voir</a> |
+                        <a href="{{ path('app_book_edit', {'id': book.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 2em;">
+        <a href="{{ path('app_book_new') }}">Ajouter un livre</a>
+    </div>
+</div>
+{% endblock %}

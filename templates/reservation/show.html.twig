@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de la réservation{% endblock %}
+
+{% block body %}
+<div style="max-width: 800px; margin: 2em auto;">
+    <h1>Réservation</h1>
+
+    <p><strong>Statut :</strong> {{ reservation.status }}</p>
+    <p><strong>Date :</strong> {{ reservation.createdAt ? reservation.createdAt|date('d/m/Y H:i') : '' }}</p>
+
+    <div style="margin-top: 2em;">
+        <a href="{{ path('app_reservation_edit', {'id': reservation.id}) }}">Modifier</a> |
+        <a href="{{ path('app_reservation_index') }}">Retour</a>
+    </div>
+
+    {{ include('reservation/_delete_form.html.twig') }}
+</div>
+{% endblock %}

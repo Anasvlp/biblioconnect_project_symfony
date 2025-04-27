@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - BiblioConnect{% endblock %}
+
+{% block body %}
+<div style="margin: 2em auto; max-width: 1000px; text-align: center;">
+    <h1>Bienvenue sur BiblioConnect</h1>
+    <p>Gérez vos livres, réservez vos lectures et partagez vos avis en quelques clics.</p>
+
+    <div style="margin-top: 3em;">
+        <a href="{{ path('app_book_index') }}" style="padding: 10px 20px; background-color: #4a90e2; color: white; text-decoration: none; border-radius: 5px;">Voir les livres</a>
+        <a href="{{ path('app_reservation_index') }}" style="padding: 10px 20px; background-color: #4a90e2; color: white; text-decoration: none; border-radius: 5px; margin-left: 15px;">Mes réservations</a>
+    </div>
+</div>
+{% endblock %}

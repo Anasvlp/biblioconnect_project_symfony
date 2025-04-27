@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commentaires{% endblock %}
+
+{% block body %}
+<div style="max-width: 1000px; margin: 2em auto;">
+    <h1 style="text-align: center;">Commentaires</h1>
+
+    {% if comments is empty %}
+        <p style="text-align: center;">Aucun commentaire trouvé.</p>
+    {% else %}
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>Livre</th>
+                    <th>Contenu</th>
+                    <th>Note</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comment in comments %}
+                <tr>
+                    <td>{{ comment.reservedBy }}</td>
+                    <td>{{ comment.book }}</td>
+                    <td>{{ comment.content }}</td>
+                    <td>{{ comment.rating }}</td>
+                    <td>
+                        <a href="{{ path('app_comment_show', {'id': comment.id}) }}">Voir</a> |
+                        <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">Modifier</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div style="text-align: center; margin-top: 2em;">
+        <a href="{{ path('app_comment_new') }}">Ajouter un commentaire</a>
+    </div>
+</div>
+{% endblock %}
